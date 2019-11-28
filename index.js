@@ -1,6 +1,7 @@
 const request = require ('request');
 
 POKEURL= 'https://pokeapi.co/api/v2';
+SWURL= 'https://swapi.co/api';
 
 const getPokeById = id => {
     request.get(`${POKEURL}/pokemon/${id}/`, (error, response, body) => {
@@ -21,4 +22,22 @@ const getPokeById = id => {
     })
 };
 
- getPokeById(7);
+
+const getPeopleMovies = (id => {
+    request.get(`${SWURL}/people/${id}/`, (error, response, body) => {
+        const person = JSON.parse(body);
+        console.log(`My name is ${person.name} and these are the movies I appear in`);
+            person.films.map (film => {
+                request.get(film, (error, response, body) => {
+                    const film = JSON.parse(body);
+                    console.log(film.title);  
+                });
+            });
+    });
+});
+
+getPokeById(7);
+
+getPeopleMovies(13);
+
+
