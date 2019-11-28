@@ -1,0 +1,19 @@
+{
+  "name": "node-practice.js",
+  "version": "0.0.1",
+  "description": "practice project from scratch with node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yidahc/Node-Practice.git"
+  },
+  "author": "yidah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yidahc/Node-Practice/issues"
+  },
+  "homepage": "https://github.com/yidahc/Node-Practice#readme"
+}
