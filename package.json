@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/yidahc/Node-Practice/issues"
   },
-  "homepage": "https://github.com/yidahc/Node-Practice#readme"
+  "homepage": "https://github.com/yidahc/Node-Practice#readme",
+  "dependencies": {
+    "request": "^2.88.0"
+  }
 }
