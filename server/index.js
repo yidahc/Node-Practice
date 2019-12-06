@@ -4,6 +4,17 @@ app = express();
 app.use(express.json()); // middlewear converting the requests into something we can now access without needing body-parser
 const port = process.env.PORT || 3000;
 
+require('dotenv').config();
+const mongoose = require('mongoose');
+
+mongoose.connect(process.env.MongoUrl, {useNewUrlParser: true}, (err) => {
+    if(err) throw err;
+    console.log("Mongo Conectado correctamente");
+});
+
+const { newTienda } = require('./controllers/stores');
+const { newArticulo } = require('./controllers/products');
+
 app.get('/', (req, res) => res.send('<h1>Hello Thor</h1>'))
 
 
@@ -20,6 +31,8 @@ app.get('user/:id', (req, res) => {
   res.status(200).json({id: req.params.id})  
 })
 
+app.post('/new/store', newTienda);
+app.post('/new/product', newArticulo);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
