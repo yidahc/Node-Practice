@@ -5,6 +5,7 @@ app.use(express.json()); // middlewear converting the requests into something we
 const port = process.env.PORT || 3000;
 
 require('dotenv').config();
+
 const mongoose = require('mongoose');
 
 mongoose.connect(process.env.MongoUrl, {useNewUrlParser: true}, (err) => {
@@ -12,11 +13,14 @@ mongoose.connect(process.env.MongoUrl, {useNewUrlParser: true}, (err) => {
     console.log("Mongo Conectado correctamente");
 });
 
-const { newTienda } = require('./controllers/stores');
-const { newArticulo } = require('./controllers/products');
+const { newTienda } = require('./controlers/tiendas.js');
+const { newArticulo } = require('./controlers/articulos.js');
 
-app.get('/', (req, res) => res.send('<h1>Hello Thor</h1>'))
+app.get('/', (req, res) => res.status(200).send('<h1>Hello Thor</h1>'))
 
+app.get('/register', (req, res) => {
+    res.status(200).send('<h1>Register</h1>')
+}) 
 
 app.post('/register', (req, res) => {
     console.log(req.body); // we access the body of the request
@@ -26,7 +30,7 @@ app.post('/register', (req, res) => {
     }})
 })  
 
-app.get('user/:id', (req, res) => {
+app.get('/user/:id', (req, res) => {
   console.log (req.params.id);
   res.status(200).json({id: req.params.id})  
 })
