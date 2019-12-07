@@ -20,40 +20,23 @@ exports.newTienda = (req, res) => {
     })
 }
 
-exports.getStores = (req, res) => {
-    Store.find({}, (err, stores) => {
+exports.getTiendas = (req, res) => {
+    Tienda.find({}, (err, tiendas) => {
         if(err){
             res.status(400).json({message: `${err}, No se encontraron tiendas`});
         }
-        res.status(200).json({stores});
+        res.status(200).json({tiendas});
     });
 };
 
-exports.getStore = (req, res ) => {
-    const {id} = req.params
-    Store.findById(id).populate('products', 'name').exec((err, store) => {
+exports.getTienda = (req, res ) => {
+    const {id} = req.params;
+    Tienda.findById(id).populate('articulos', 'nombre').exec((err, tienda) => { 
+    // articulos-> the field I want to populate, from the object 'articulo' 
+    //'nombre'-> the only field I want to bring from 'articulo' to populate this 'articulos' field
         if(err){
             res.status(400).json({err});
         }
-        res.json({store})
+        res.json({tienda})
 });
-}
-
-exports.getStores = (req, res) => {
-   Store.find({}, (err, stores) => {
-        if(err){
-            res.status(400).json({message: `${err}, No se encontraron tiendas`});
-        }
-            res.status(200).json({stores});
-    });
-};
-    
-exports.getStore = (req, res ) => {
-    const {id} = req.params
-    Store.findById(id).populate('products', 'name').exec((err, store) => {
-        if(err){
-             res.status(400).json({err});
-        }
-        res.json({store})
-    });
 }
