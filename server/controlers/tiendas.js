@@ -32,8 +32,10 @@ exports.getTiendas = (req, res) => {
 exports.getTienda = (req, res ) => {
     const {id} = req.params;
     Tienda.findById(id).populate('articulos', 'nombre').exec((err, tienda) => { 
-    // articulos-> the field I want to populate, from the object 'articulo' 
-    //'nombre'-> the only field I want to bring from 'articulo' to populate this 'articulos' field
+    // articulos-> the name field I want to populate(according to the Tienda schema), from the object 'articulo' 
+        // we are bringing in info from the 'articulo' object, for each id in the 'articulos' array in the Tienda schema
+    //'nombre'-> the only field I want to bring from every 'articulo' record(entry), to populate this 'articulos' field   
+        // we are bringing in only the name, for each 'articulo' in the 'articulos' field found in this Tienda record/entry
         if(err){
             res.status(400).json({err});
         }
