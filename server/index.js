@@ -16,7 +16,7 @@ mongoose.connect(process.env.MongoUrl, {useNewUrlParser: true}, (err) => {
 const { newTienda, getTiendas,  getTienda } = require('./controlers/tiendas.js');
 const { newCategoria, getCategorias } = require('./controlers/categorias.js');
 const { newMarca, getMarcas } = require('./controlers/marcas.js');
-const { newArticulo, getArticulos } = require('./controlers/articulos.js');
+const { newArticulo, getArticulos, getArticulo } = require('./controlers/articulos.js');
 
 app.get('/', (req, res) => res.status(200).send('<h1>Hello Thor</h1>'))
 
