@@ -18,7 +18,7 @@ const ArticuloSchema = new Schema({
     },
     marca:{
         type: Schema.Types.ObjectId,
-        ref: 'Marca',
+        ref: 'marca',
         required: true
     },
     disponibilidad:{
@@ -26,20 +26,20 @@ const ArticuloSchema = new Schema({
         maxlength: 4,
         default: 1
     },
-    category:{
+    categoria:{
         type: Schema.Types.ObjectId,
-        ref: 'Category',
+        ref: 'categoria',
         required: true
     },
-    sold:{
+    vendidos:{
         type: Number, //to determine how many items of this you have sold, so you can render the best selling items
         maxlength: 100,
         default: 0
     },
-    publish:{     // to display it on the client when you chose to make it available to the public
+    publicar:{     // to display it on the client when you chose to make it available to the public
         type: Boolean
     },
-    images:{
+    imagenes:{
     //    required: true,
         type: Array
     }

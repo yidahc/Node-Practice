@@ -20,3 +20,13 @@ exports.getArticulos = (req, res) => {
         res.status(200).json({articulos});
     });
 };
+
+exports.getArticulo = (req, res ) => {
+    const {id} = req.params;
+    Articulo.findById(id).populate('marca').populate('categoria').exec((err, articulo) => { 
+        if(err){
+            res.status(400).json({err});
+        }
+        res.json({articulo})
+});
+}
