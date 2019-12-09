@@ -15,4 +15,14 @@ exports.newMarca = (req, res) => {
         res.status(201).json({message:`${marca} creada`});
     })
 
+};
+
+
+exports.getMarcas = (req, res) => {
+    Marca.find({}, (err,marcas) => {
+        if (err) {
+            res.status(400).json({err});
+        }
+        res.status(200).json({marcas});
+    });
 }

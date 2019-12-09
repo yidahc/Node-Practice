@@ -11,3 +11,12 @@ exports.newArticulo = (req, res) => {
     })
 
 }
+
+exports.getArticulos = (req, res) => {
+    Articulo.find({}, (err, articulos) => {
+        if(err){
+            res.status(400).json({message: `${err}, No se encontraron articulos`});
+        }
+        res.status(200).json({articulos});
+    });
+};

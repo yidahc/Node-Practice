@@ -15,4 +15,13 @@ exports.newCategoria = (req, res) => {
         res.status(201).json({message:`${categoria} creada`});
     })
 
-}
+};
+
+exports.getCategorias = (req, res) => {
+    Categoria.find({}, (err, categorias) => {
+        if(err){
+            res.status(400).json({message: `${err}, No se encontraron categorias`});
+        }
+        res.status(200).json({categorias});
+    });
+};
