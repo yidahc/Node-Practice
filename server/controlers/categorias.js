@@ -1,4 +1,4 @@
-const Categoria = require('../models/categoria');
+const Categoria = require('../models/Almacen/Productos/categoria');
 
 exports.newCategoria = (req, res) => {
     let { nombre } = req.params;

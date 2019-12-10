@@ -1,4 +1,4 @@
-const Articulo = require('../models/Cuentas/Productos/articulo');
+const Articulo = require ('../models/Almacen/Productos/articulo')
 
 exports.newArticulo = (req, res) => {
     let nuevoArticulo = new Articulo(req.body);

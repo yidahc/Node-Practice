@@ -1,4 +1,4 @@
-const Tienda = require('../models/tienda');
+const Tienda = require('../models/Cuentas/Almacen/tienda');
 
 exports.newTienda = (req, res) => {
     let params = req.body;
