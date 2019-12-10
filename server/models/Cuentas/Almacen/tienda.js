@@ -9,16 +9,13 @@ const TiendaSchema = new Schema({
     direccion: {
         type: String
     },
-    articulos: {
-        type:[
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'articulo'
-            }
-        ]
-    }
+    inventario: {
+        type: [Schema.Types.ObjectId],
+        ref: 'Inventario'
+    },
+    
 });
 
-const Tienda = mongoose.model('tienda', TiendaSchema);
+const Tienda = mongoose.model('Tienda', TiendaSchema);
 
 module.exports = Tienda;

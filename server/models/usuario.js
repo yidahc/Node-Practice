@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const usuarioSchema = new Schema ({
+const UsuarioSchema = new Schema ({
     email: {
         type: String,
         required: true,
@@ -23,14 +23,6 @@ const usuarioSchema = new Schema ({
         required: true,
         maxLength: 50
       },
-      carrito: {
-        type:Array,
-        default:[] // generate empty cart  & shopping history for new user, 
-      }, // will push items into it later on
-      historial: {
-        type:Array,
-        default:[] 
-      },
       rol: {
         type: Number,
         default: 0 // either you are an administrator or a user
@@ -40,5 +32,5 @@ const usuarioSchema = new Schema ({
       }
 })
 
-const Usuario = mongoose.model('usuario', usuarioSchema);
+const Usuario = mongoose.model('Usuario', UsuarioSchema);
 module.exports = Usuario;

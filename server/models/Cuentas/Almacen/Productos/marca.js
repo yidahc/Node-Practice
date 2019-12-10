@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const categoriaSchema = new Schema({
+const MarcaSchema = new Schema({
     nombre:{
         required: true, 
         type: String, 
@@ -10,6 +10,6 @@ const categoriaSchema = new Schema({
     }
 });
 
-const Categoria = mongoose.model('Categoria', categoriaSchema);
+const Marca = mongoose.model('Marca', MarcaSchema);
 
-module.exports = Categoria;
+module.exports = Marca;
