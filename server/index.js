@@ -42,33 +42,41 @@ app.post('/new/usuario', (req, res) => {
     }})
 })  
 
-app.get('/usuario/:id', (req, res) => {
-  console.log (req.params.id);
-  res.status(200).json({id: req.params.id})  
+app.get('/usuario', (req, res) => {
+  console.log (req.query.id);
+  res.status(200).json({id: req.query.id})  
 })
 
 app.get('/clientes/activos', getClientesActivos);
 app.get('/proovedores/activos', getProovedoresActivos);
-app.post('/new/cuenta', registrarCuenta);
 
 app.get('/tiendas', getTiendas);
 app.get('/tiendas/:id', getTienda);
-app.post('/new/tienda', newTienda);
-
-app.get('/categorias', getCategorias);
-app.post('/new/categoria', newCategoria);
-
-app.get('/marcas', getMarcas);
-app.post('/new/marca', newMarca);
 
 app.get('/articulos', getArticulos);
-app.post('/new/articulo', newArticulo);
-
 app.get('/inventarios', getInventarios);
-app.post('/new/inventario', newInventario);
 
 app.get('/compras/pendientes', getComprasPendientes);
-app.post('/new/compra', nuevoPedido);
+app.get('/compras/finalizadas', getComprasFinalizadas);
+app.get('/ventas/pendientes', getVentasPendientes);
+app.get('/ventas/finalizadas', getVentasFinalizadas);
+
+app.get('/pedido/:id', getPedido)
+
+app.get('/categorias', getCategorias);
+app.get('/marcas', getMarcas);
+
+
+app.post('/new/cuenta', registrarCuenta);
+app.post('/new/tienda', newTienda);
+app.post('/new/articulo', newArticulo);
+app.post('/new/inventario', newInventario);
+app.post('/new/pedido', nuevoPedido);
+
+app.post('/new/marca', newMarca);
+app.post('/new/categoria', newCategoria);
+
+app.get('/finalizar/pedido', finalizarPedido)
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 

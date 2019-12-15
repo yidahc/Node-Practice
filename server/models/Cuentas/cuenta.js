@@ -5,7 +5,8 @@ const CuentaSchema = new Schema ({
       referencia: {
         type: String,
         unique: true,
-        required: true
+        required: true,
+        trim: true
       },
       nombre: {
         type: String,

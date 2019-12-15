@@ -8,7 +8,7 @@ exports.registrarCuenta = (req, res) => {
     nuevoCuenta.save((err, cuenta) => {
         if(err){
             console.log(err);
-            res.status(400).json({message:"Error al registrar nueva cuenta",error:err});
+            res.status(400).json({message:"Error al registrar nueva cuenta"});
         }
         res.status(201).json({message: cuenta});
     })

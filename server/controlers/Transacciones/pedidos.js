@@ -1,6 +1,6 @@
 const Pedido = require ('../../models/Transacciones/pedido')
 //const Inventario = require ('../../models/Almacen/Productos/inventario')
-// 5df45b48ac9ae32820e84c42 <-- Gamesa
+// 5df60580dbcdcc33b8d7a006 <-- Venta takis y red bull
 exports.nuevoPedido = (req, res) => {
     let newPedido = new Pedido(req.body);
     newPedido.save((err, pedido) => {
@@ -20,11 +20,16 @@ db.students2.findOneAndUpdate(
 )
 */
 exports.finalizarPedido = (req, res) => {
-    const {id} = req.params;
-    Compra.findOneAndUpdate(
+    const id = req.query.id;
+    Pedido.findOneAndUpdate(
         {_id:id},
         {$set:{"completado":true}}
-    )
+    ).exec((err, pedido) => {
+        if(err){
+            res.status(400).json({error:"No se encontro pedido con este ID", message: `${err}`});
+        }
+        res.status(200).json({pedido});
+    });
 }
 
 exports.getComprasPendientes = (req, res) => {
@@ -76,7 +81,7 @@ exports.getVentasFinalizadas = (req, res) => {
 };
 
 exports.getPedido = (req, res ) => {
-    const {id} = req.params;
+    const {id} = req.query.id;
     Pedido.findById(id).populate('cuenta').populate('articulos').exec((err, pedido) => { 
         if(err){
             res.status(400).json({err});

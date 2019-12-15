@@ -1,6 +1,5 @@
 const Inventario = require ('../../../models/Almacen/Productos/inventario')
 
-
 // 5df44be99875be1ea8ecc1db <-- takis
 
 exports.newInventario = (req, res) => {
@@ -25,11 +24,13 @@ exports.getInventarios = (req, res) => {
 };
 
 exports.getInventario = (req, res ) => {
-    const {producto} = req.params;
-    Inventario.find({product: producto}).populate('producto').exec((err, inventario) => { 
-        if(err){
-            res.status(400).json({err});
-        }
-        res.json({inventario})
-});
+    const {articulo, tienda} = req.params;
+    Inventario.find({producto: articulo, tienda:tienda})
+              .populate('producto')
+              .exec((err, inventario) => { 
+                if(err){
+                    res.status(400).json({err});
+                }
+                res.json({inventario})
+              });
 }

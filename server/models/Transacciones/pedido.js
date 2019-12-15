@@ -10,14 +10,16 @@ const PedidoSchema = new Schema({
     typo:{
         type: String,
         required: true,
-        enum: ['Compra', 'Gasto']
+        enum: ['Compra', 'Venta']
       },
     nota:{
         type: String,
         maxlength:100000
     },
     articulos:{
-        required: [{ type: Schema.Types.ObjectId, ref: 'Articulo' }]
+        type: [{ type: Schema.Types.ObjectId}],
+        ref: 'Articulo',
+        required: true
     },
     monto: {
         required: Number,
