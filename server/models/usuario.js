@@ -24,12 +24,11 @@ const UsuarioSchema = new Schema ({
         maxLength: 50
       },
       rol: {
-        type: Number,
-        default: 0 // either you are an administrator or a user
-      }, // 0 is for user and that is the default for any new account
-      token: {
-        type: String 
-      }
+        type: String,
+        required: true,
+        enum: ['User', 'Admin']
+      }, 
+      token: String,
 })
 
 const Usuario = mongoose.model('Usuario', UsuarioSchema);

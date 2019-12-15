@@ -8,21 +8,10 @@ const ArticuloSchema = new Schema({
         unique: 1,
         maxlength:100
     },
-    descripcion:{
-        type: String,
-        maxlength:100000
-    },
-    costo:{
-        type: Number,
-        maxlength: 5
-    },
-    precio:{
-        type: Number,
-        maxlength: 5
-    },
-    imagenes:{
-        type: Array
-    },
+    descripcion: String,
+    costo: Number,
+    precio: Number,
+    imagenes: [String],
     marca:{
         type: Schema.Types.ObjectId,
         ref: 'Marca',

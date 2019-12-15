@@ -13,10 +13,20 @@ mongoose.connect(process.env.MongoUrl, {useNewUrlParser: true}, (err) => {
     console.log("Mongo Conectado correctamente");
 });
 
-const { newTienda, getTiendas,  getTienda } = require('./controlers/tiendas.js');
-const { newCategoria, getCategorias } = require('./controlers/categorias.js');
-const { newMarca, getMarcas } = require('./controlers/marcas.js');
-const { newArticulo, getArticulos, getArticulo } = require('./controlers/articulos.js');
+const { registrarCuenta, getCuentas, getClientesActivos, getProovedoresActivos, getCuentaByID } = require('./controlers/Cuentas/cuentas');
+const { newTienda, getTiendas,  getTienda } = require('../server/controlers/Almacen/tiendas');
+
+const { nuevoPedido, finalizarPedido, 
+        getComprasPendientes, getComprasFinalizadas, 
+        getVentasPendientes, getVentasFinalizadas, 
+        getPedido, getPedidosDeCliente } = require('./controlers/Transacciones/pedidos')
+
+const { newArticulo, getArticulos, getArticulo } = require('../server/controlers/Almacen/Productos/articulos');
+const { newInventario, getInventarios, getInventario } = require('../server/controlers/Almacen/Productos/inventarios');
+
+const { newCategoria, getCategorias } = require('../server/controlers/Almacen/Productos/categorias');
+const { newMarca, getMarcas } = require('../server/controlers/Almacen/Productos/marcas');
+
 
 app.get('/', (req, res) => res.status(200).send('<h1>Hello Thor</h1>'))
 
@@ -37,7 +47,12 @@ app.get('/usuario/:id', (req, res) => {
   res.status(200).json({id: req.params.id})  
 })
 
+app.get('/clientes/activos', getClientesActivos);
+app.get('/proovedores/activos', getProovedoresActivos);
+app.post('/new/cuenta', registrarCuenta);
+
 app.get('/tiendas', getTiendas);
+app.get('/tiendas/:id', getTienda);
 app.post('/new/tienda', newTienda);
 
 app.get('/categorias', getCategorias);
@@ -48,6 +63,12 @@ app.post('/new/marca', newMarca);
 
 app.get('/articulos', getArticulos);
 app.post('/new/articulo', newArticulo);
+
+app.get('/inventarios', getInventarios);
+app.post('/new/inventario', newInventario);
+
+app.get('/compras/pendientes', getComprasPendientes);
+app.post('/new/compra', nuevoPedido);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
