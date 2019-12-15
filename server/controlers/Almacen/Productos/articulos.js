@@ -1,11 +1,14 @@
-const Articulo = require ('../models/Almacen/Productos/articulo')
+const Articulo = require ('../../../models/Almacen/Productos/articulo')
+
+// 5df449dff0883d1654882ccf <-- takis
+// 5df458b8aa736028c8faa3eb <-- Red Bull
 
 exports.newArticulo = (req, res) => {
     let nuevoArticulo = new Articulo(req.body);
     nuevoArticulo.save((err, articulo) => {
         if(err){
             console.log(err);
-            res.status(400).json({message:"Error al crear nuevo Producto"});
+            res.status(400).json({message:err});
         }
         res.status(201).json({message: articulo});
     })
@@ -13,7 +16,7 @@ exports.newArticulo = (req, res) => {
 }
 
 exports.getArticulos = (req, res) => {
-    Articulo.find({}, (err, articulos) => {
+    Articulo.find({}).populate('marca').populate('categoria').exec((err, articulos) => {
         if(err){
             res.status(400).json({message: `${err}, No se encontraron articulos`});
         }

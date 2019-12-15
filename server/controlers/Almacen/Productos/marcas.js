@@ -1,4 +1,4 @@
-const Marca = require('../models/Almacen/Productos/marca');
+const Marca = require('../../../models/Almacen/Productos/marca');
 
 exports.newMarca = (req, res) => {
     let { nombre } = req.params;
