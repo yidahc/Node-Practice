@@ -101,3 +101,14 @@ exports.getPedidosDeCliente = (req, res ) => {
          res.json({pedidos})
        });
 }
+
+exports.getPedidos = (req, res ) => {
+    Pedido.find({})
+      .populate('articulos')
+      .exec((err, pedidos) => { 
+         if(err){
+            res.status(400).json({err});
+         }
+         res.json({pedidos})
+       });
+}

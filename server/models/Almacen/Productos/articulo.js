@@ -5,7 +5,6 @@ const ArticuloSchema = new Schema({
     nombre: {
         type: String,
         required: true,
-        unique: 1,
         maxlength:100
     },
     descripcion: String,

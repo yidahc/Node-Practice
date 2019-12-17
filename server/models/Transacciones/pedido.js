@@ -21,6 +21,7 @@ const PedidoSchema = new Schema({
         ref: 'Articulo',
         required: true
     },
+    descuento: Number,
     monto: {
         required: Number,
     },
