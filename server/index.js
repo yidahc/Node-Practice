@@ -16,7 +16,7 @@ mongoose.connect(process.env.MongoUrl, {useNewUrlParser: true}, (err) => {
 });
 
 const { registrarCuenta, getCuentas, getClientesActivos, getProovedoresActivos, getCuentaByID } = require('./controlers/Cuentas/cuentas');
-const { newTienda, getTiendas,  getTienda } = require('../server/controlers/Almacen/tiendas');
+//const { newTienda, getTiendas,  getTienda } = require('../server/controlers/Almacen/tiendas');
 
 const { nuevoPedido, finalizarPedido, 
         getComprasPendientes, getComprasFinalizadas, 
@@ -52,8 +52,8 @@ app.get('/usuario', (req, res) => {
 app.get('/clientes/activos', getClientesActivos);
 app.get('/proovedores/activos', getProovedoresActivos);
 
-app.get('/tiendas', getTiendas);
-app.get('/tiendas/:id', getTienda);
+//app.get('/tiendas', getTiendas);
+//app.get('/tiendas/:id', getTienda);
 
 app.get('/articulos', getArticulos);
 app.get('/inventarios', getActiveInventarios);
@@ -71,7 +71,7 @@ app.get('/marcas', getMarcas);
 
 
 app.post('/new/cuenta', registrarCuenta);
-app.post('/new/tienda', newTienda);
+//app.post('/new/tienda', newTienda);
 app.post('/new/articulo', newArticulo);
 app.post('/new/inventario', newInventario);
 app.post('/new/pedido', nuevoPedido);

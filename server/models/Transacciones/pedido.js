@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const PedidoSchema = new Schema({
+const OrdenSchema = new Schema({
     cuenta: {
         type: Schema.Types.ObjectId,
         ref: 'Cuenta',
@@ -16,11 +16,7 @@ const PedidoSchema = new Schema({
         type: String,
         maxlength:100000
     },
-    articulos:{
-        type: [{ type: Schema.Types.ObjectId}],
-        ref: 'Articulo',
-        required: true
-    },
+    articulos:[{type:Schema.ObjectId, ref:'Articulo', required:true}],
     descuento: Number,
     monto: {
         required: Number,
@@ -32,6 +28,6 @@ const PedidoSchema = new Schema({
     }
 }, {timestamps: true});
 
-const Pedido = mongoose.model('Pedido', PedidoSchema);
+const Orden = mongoose.model('Orden', OrdenSchema);
 
-module.exports = Pedido;
+module.exports = Orden;

@@ -8,7 +8,7 @@ exports.nuevoPedido = (req, res) => {
             console.log(err);
             res.status(400).json({message:err});
         }
-        res.status(201).json({message: pedido});
+        res.status(201).json(pedido);
     })
 }
 
@@ -59,12 +59,12 @@ exports.getComprasFinalizadas = (req, res) => {
 exports.getVentasPendientes = (req, res) => {
     Pedido.find({completado:false, typo:'Venta'})
         .populate('cuenta')
-        .populate({path:'articulos', select: 'nombre precio'})
+        .populate('articulos')
         .exec((err, ventas) => {
             if(err){
                 res.status(400).json({error:"No se encontraron ventas pendientes", message: `${err}`});
             }
-            res.status(200).json({ventas});
+            res.status(200).json(ventas);
         });
 };
 
