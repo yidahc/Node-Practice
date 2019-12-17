@@ -21,7 +21,7 @@ const { newTienda, getTiendas,  getTienda } = require('../server/controlers/Alma
 const { nuevoPedido, finalizarPedido, 
         getComprasPendientes, getComprasFinalizadas, 
         getVentasPendientes, getVentasFinalizadas, 
-        getPedido, getPedidosDeCliente } = require('./controlers/Transacciones/pedidos')
+        getPedido, getPedidosDeCliente, getPedidos } = require('./controlers/Transacciones/pedidos')
 
 const { newArticulo, getArticulos, getArticulo } = require('../server/controlers/Almacen/Productos/articulos');
 const { newInventario, getInventarios, getInventario } = require('../server/controlers/Almacen/Productos/inventarios');
@@ -58,6 +58,7 @@ app.get('/tiendas/:id', getTienda);
 app.get('/articulos', getArticulos);
 app.get('/inventarios', getInventarios);
 
+app.get('/transacciones', getPedidos)
 app.get('/compras/pendientes', getComprasPendientes);
 app.get('/compras/finalizadas', getComprasFinalizadas);
 app.get('/ventas/pendientes', getVentasPendientes);
