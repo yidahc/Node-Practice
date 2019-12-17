@@ -1,10 +1,12 @@
 express = require ('express')
+var cors = require('cors')
 
 app = express();
 app.use(express.json()); // middlewear converting the requests into something we can now access without needing body-parser
 const port = process.env.PORT || 3000;
 
 require('dotenv').config();
+app.use(cors())
 
 const mongoose = require('mongoose');
 

@@ -1,16 +1,39 @@
 const Articulo = require ('../../../models/Almacen/Productos/articulo')
-
+const Inventario = require ('../../../models/Almacen/Productos/inventario')
 // 5df449dff0883d1654882ccf <-- takis
 // 5df458b8aa736028c8faa3eb <-- Red Bull
 
 exports.newArticulo = (req, res) => {
-    let nuevoArticulo = new Articulo(req.body);
+    let params = req.body;
+    let nuevoArticulo = Articulo({
+        nombre: params.nombre,
+        descripcion: params.descripcion,
+        costo: params.costo > 0 ? params.costo : null,
+        precio: params.precio > 0 ? params.precio : null,
+        imagenes: params.imagenes ? params.imagenes : [],
+        marca: params.marca ? params.marca : null,
+        categoria: params.categoria ? params.categoria : null
+    });
     nuevoArticulo.save((err, articulo) => {
         if(err){
             console.log(err);
-            res.status(400).json({message:err});
+            res.status(400).json({message:"error al crear articulo", Error: err});
         }
-        res.status(201).json({message: articulo});
+        let newInventario = Inventario ({
+            producto: articulo._id,
+            disponibles: params.disponibilidad,
+            publicar: params.publicar,
+            tienda: params.tienda ? params.tienda : null
+        });
+        newInventario.save((err,inventario) => {
+            if(err){
+                console.log(err);
+                res.status(400).json({message: "creacion de inventario han fallado", Error: err});
+            }
+            res.status(201).json({Message: "articulo e inventario han sido creados",
+                                    Article: articulo,
+                                    Inventory: inventario});
+        })
     })
 
 }
