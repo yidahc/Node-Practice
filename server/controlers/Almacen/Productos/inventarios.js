@@ -14,12 +14,14 @@ exports.newInventario = (req, res) => {
 
 }
 
-exports.getInventarios = (req, res) => {
-    Inventario.find({}).populate({path:'producto', select: 'nombre costo precio'}).populate({path:'tienda', select: 'nombre'}).exec((err, inventarios) => {
+exports.getActiveInventarios = (req, res) => {
+    Inventario.find({publicar:true, disponibles: { $gt: 0 },}).populate({path:'producto', select: 'nombre costo precio'}).populate({path:'tienda', select: 'nombre'}).exec((err, inventarios) => {
         if(err){
             res.status(400).json({message: `${err}, No se encontraron inventarios`});
         }
-        res.status(200).json({inventarios});
+        let productosActivos = []
+        inventarios.map(e=> productosActivos.push(e.producto))
+        res.status(200).json(productosActivos);
     });
 };
 

@@ -5,6 +5,7 @@ const InventarioSchema = new Schema({
     producto: {
         type: Schema.Types.ObjectId,
         ref: 'Articulo',
+        unique: true,
     },
     disponibles:{
         type: Number,

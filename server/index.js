@@ -24,7 +24,7 @@ const { nuevoPedido, finalizarPedido,
         getPedido, getPedidosDeCliente, getPedidos } = require('./controlers/Transacciones/pedidos')
 
 const { newArticulo, getArticulos, getArticulo } = require('../server/controlers/Almacen/Productos/articulos');
-const { newInventario, getInventarios, getInventario } = require('../server/controlers/Almacen/Productos/inventarios');
+const { newInventario, getActiveInventarios, getInventario } = require('../server/controlers/Almacen/Productos/inventarios');
 
 const { newCategoria, getCategorias } = require('../server/controlers/Almacen/Productos/categorias');
 const { newMarca, getMarcas } = require('../server/controlers/Almacen/Productos/marcas');
@@ -56,7 +56,7 @@ app.get('/tiendas', getTiendas);
 app.get('/tiendas/:id', getTienda);
 
 app.get('/articulos', getArticulos);
-app.get('/inventarios', getInventarios);
+app.get('/inventarios', getActiveInventarios);
 
 app.get('/transacciones', getPedidos)
 app.get('/compras/pendientes', getComprasPendientes);
