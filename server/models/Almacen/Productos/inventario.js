@@ -19,10 +19,6 @@ const InventarioSchema = new Schema({
         type: Boolean,
         default: true
     },
-    tienda: {
-        type: Schema.Types.ObjectId,
-        ref: 'Tienda',
-    },
 }, {timestamps: true});
 
 const Inventario = mongoose.model('Inventario', InventarioSchema);
