@@ -2,12 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 // 5df4587eeb05bf064c6d38b3
 const CuentaSchema = new Schema ({
-      referencia: {
-        type: String,
-        unique: true,
-        required: true,
-        trim: true
-      },
       nombre: {
         type: String,
         required: true,

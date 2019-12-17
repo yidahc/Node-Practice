@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const OrdenSchema = new Schema({
     cuenta: {
         type: Schema.Types.ObjectId,
-        ref: 'Cuenta',
+        ref: 'Account',
         required: true
     },
     typo:{
