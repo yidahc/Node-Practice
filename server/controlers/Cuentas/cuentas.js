@@ -4,11 +4,23 @@ const Cuenta = require ('../../models/Cuentas/cuenta')
 // 5df458266c2766350c59f383
 // 5df4587eeb05bf064c6d38b3
 exports.registrarCuenta = (req, res) => {
-    let newCuenta = new Cuenta(req.body);
+    let params = req.body;
+    let newCuenta = Cuenta({
+        nombre: params.nombre,
+        typo: params.typo ? params.typo : 'Proovedor',
+        direccion: params.direccion ? params.direccion : "",
+        direcciones: params.direcciones ? params.direcciones : [],
+        contactos: params.contactos ? params.contactos : {},
+        telefono: params.telefono > 0 ? params.telefono : null,
+        email: params.email ? params.email : null,
+        celular: params.celular > 0 ? params.celular : null,
+        pedidos: params.pedidos ? params.pedidos : [],
+        commentario: params.commentario ? params.commentario : null,
+    });
     newCuenta.save((err, cuenta) => {
         if(err){
             console.log(err);
-            res.status(400).json({message:"Error al registrar nueva cuenta"});
+            res.status(400).json({message:"Error al registrar nueva cuenta", error:err});
         }
         res.status(201).json({message: cuenta});
     })
