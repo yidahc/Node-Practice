@@ -32,7 +32,7 @@ const CuentaSchema = new Schema ({
         type: Number,
         maxLength: 20
       },
-      pedidos: [{ type: Schema.Types.ObjectId, ref: 'Orden' }],
+      pedidos: [{ type: Schema.Types.ObjectId, ref: 'Pedido' }],
       commentario: String,
       activo: {
         type: Boolean,
