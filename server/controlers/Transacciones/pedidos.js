@@ -104,7 +104,8 @@ exports.getPedidosDeCliente = (req, res ) => {
 
 exports.getPedidos = (req, res ) => {
     Pedido.find({})
-      .populate('articulos')
+      .populate('articulos', 'nombre costo precio')
+      .populate('cuenta', 'nombre')
       .exec((err, pedidos) => { 
          if(err){
             res.status(400).json({err});
