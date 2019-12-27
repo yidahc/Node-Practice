@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const PedidoSchema = new Schema({
+const TransaccionSchema = new Schema({
     cuenta: {
         type: Schema.Types.ObjectId,
         ref: 'Cuenta',
@@ -11,7 +11,7 @@ const PedidoSchema = new Schema({
         type: String,
         required: true,
         enum: ['Compra', 'Venta']
-      },
+    },
     nota:{
         type: String,
         maxlength:100000
@@ -25,13 +25,13 @@ const PedidoSchema = new Schema({
     monto: {
         required: Number,
     },
-    completado: {
-        type: Boolean,
-        default: false,
-        timestamps: true
-    }
+    estatus:{
+        type: String,
+        required: true,
+        enum: ['Cotizacion', 'Orden', 'Factura']
+    },
 }, {timestamps: true});
 
-const Pedido = mongoose.model('Pedido', PedidoSchema);
+const Transaccion = mongoose.model('Transaccion', TransaccionSchema);
 
-module.exports = Pedido;
+module.exports = Transaccion;

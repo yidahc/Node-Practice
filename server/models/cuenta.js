@@ -2,12 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 // 5df4587eeb05bf064c6d38b3
 const CuentaSchema = new Schema ({
-      referencia: {
-        type: String,
-        unique: true,
-        required: true,
-        trim: true
-      },
       nombre: {
         type: String,
         required: true,
@@ -16,16 +10,16 @@ const CuentaSchema = new Schema ({
       typo:{
         type: String,
         required: true,
-        enum: ['Proovedor', 'Cliente']
+        enum: ['Proveedor', 'Cliente', 'Contacto']
       },
-      direccion: String,
-      direcciones: [String],
-      contactos: {
-        nombre: { type: String },
-        email: { type: String },
-        telefono: { type: Number },
-        celular: { type: Number }
-      },  
+      direccion: {
+        calle: { type: String },
+        detalles: { type: String },
+        referencia: { type: String },
+        estado: { type: String },
+        pais: { type: String },
+        codPostal: {type: Number}
+      },
       telefono: {
         type: Number,
         maxLength: 20
@@ -38,12 +32,16 @@ const CuentaSchema = new Schema ({
         type: Number,
         maxLength: 20
       },
-      pedidos: [{ type: Schema.Types.ObjectId, ref: 'Pedido' }],
       commentario: String,
+      contactos:{
+        type: [{ type: Schema.Types.ObjectId}],
+        ref: 'Cuenta',
+      },
       activo: {
         type: Boolean,
-        default: true
+        default: false
      }
+     
 })
 
 const Cuenta = mongoose.model('Cuenta', CuentaSchema);

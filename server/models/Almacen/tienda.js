@@ -8,12 +8,7 @@ const TiendaSchema = new Schema({
     },
     direccion: {
         type: String
-    },
-    inventario: {
-        type: [Schema.Types.ObjectId],
-        ref: 'Inventario'
-    },
-    
+    },    
 });
 
 const Tienda = mongoose.model('Tienda', TiendaSchema);
